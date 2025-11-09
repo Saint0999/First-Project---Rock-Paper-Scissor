@@ -10,7 +10,7 @@ Since this is a simple front-end project, you don't need any complex setup or bu
     ```bash
     git clone [Your Repository URL Here]
     ```
-2.  **Open the File:** Navigate to the project directory and open the `06-rock-paper.html` file directly in your web browser (e.g., Chrome, Firefox).
+2.  **Open the File:** Navigate to the project directory and open the `rock-paper-scissor.html` file directly in your web browser (e.g., Chrome, Firefox).
 3.  **Start Playing:** Click the Rock, Paper, or Scissors buttons to play against the computer.
 
 ---
