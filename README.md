@@ -8,7 +8,7 @@ Since this is a simple front-end project, you don't need any complex setup or bu
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [Your Repository URL Here]
+    git clone https://github.com/Saint0999/First-Project---Rock-Paper-Scissor.git
     ```
 2.  **Open the File:** Navigate to the project directory and open the `rock-paper-scissor.html` file directly in your web browser (e.g., Chrome, Firefox).
 3.  **Start Playing:** Click the Rock, Paper, or Scissors buttons to play against the computer.
