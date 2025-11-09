@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title class="project-title">Rock Paper Scissor</title>
+
+    <style>
+      body {
+        font-family: arial;
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 90vh;
+        justify-content: center;
+        margin: 0;
+      }
+
+      .js-rock-button, .js-paper-button, .js-scissor-button{
+        background-color: rgb(255, 179, 0);
+        border: none;
+        border-radius: 25px;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .js-rock-button:hover, .js-paper-button:hover, .js-scissor-button:hover{
+        background-color: rgb(255, 0, 0);
+        transition: background-color 0.25s;
+      }
+
+      .js-rock-button:active, .js-paper-button:active, .js-scissor-button:active{
+        background-color: rgb(255, 66, 66);
+        transition: background-color 0.1s;
+      }
+
+      .js-reset-button{
+        background-color: rgb(255, 179, 0);
+        border: none;
+        border-radius: 25px;
+        padding-top: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .js-reset-button:hover{
+        background-color: rgb(255, 0, 0);
+        transition: background-color 0.25s;
+      }
+
+      .js-reset-button:active{
+        background-color: rgb(255, 66, 66);
+        transition: background-color 0.1s;
+      }
+
+      .js-result{
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .js-score{
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <p>Rock Paper Scissor</p>
+
+    <div>
+      <button class="js-rock-button">Rock</button>
+      <button class="js-paper-button">Paper</button>
+      <button class="js-scissor-button">Scissor</button>
+    </div>
+
+    <p class="js-result" id="result-display"></p>
+
+    <p class="js-score" id="score-display"></p>
+
+    <button class="js-reset-button" id="reset-score">Reset Score</button>
+
+    <script>
+
+      let score = JSON.parse(localStorage.getItem('score')) || {
+        wins: 0, losses: 0, ties: 0
+      };
+
+      function updateScoreElement(){
+        const scoreElement = document.getElementById('score-display');
+        const scoreFull = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+        scoreElement.innerText = scoreFull;
+      }
+
+      updateScoreElement();
+
+      function pickcomputerMove(){
+        const randomNumber = Math.random();
+        let computerMove = '';
+
+        if (randomNumber < 1/3){
+          computerMove = 'Rock';
+        } else if (randomNumber < 2/3 && randomNumber > 1/3){
+          computerMove = 'Paper';
+        } else if (randomNumber > 2/3){
+          computerMove = 'Scissor';
+        }
+
+        return computerMove;
+      }
+
+      function resetScore(){
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+
+        updateScoreElement();
+
+        localStorage.setItem('score', JSON.stringify(score));
+      }
+
+      
+      function playGame(playerMove){
+        const computerMove = pickcomputerMove();
+
+        let result = '';
+
+        if (playerMove === 'Rock' && computerMove === 'Scissor'){
+        result = 'You Win';
+      } else if (playerMove === 'Rock' && computerMove === 'Paper'){
+        result = 'You Lose';
+      }
+
+      if (playerMove === 'Paper' && computerMove === 'Rock'){
+        result = 'You Win';
+      } else if (playerMove === 'Paper' && computerMove === 'Scissor'){
+        result = 'You Lose';
+      }
+
+      if (playerMove === 'Scissor' && computerMove === 'Paper'){
+        result = 'You Win';
+      } else if (playerMove === 'Scissor' && computerMove === 'Rock'){
+        result = 'You Lose';
+      }
+
+      if (playerMove === computerMove) {
+        result = 'Tie';
+      }
+
+      if (result === 'You Win'){
+        score.wins++;
+      } else if (result === 'You Lose'){
+        score.losses++;
+      } else if (result === 'Tie'){
+        score.ties++;
+      }
+
+      const resultElement = document.getElementById('result-display');
+
+      const resultFull = `You picked ${playerMove}, Computer picked ${computerMove}. ${result}`;
+
+      resultElement.innerText = resultFull;
+
+      updateScoreElement();
+
+      localStorage.setItem('score', JSON.stringify(score));
+
+      return result;
+      }
+
+      document.querySelector('.js-rock-button').addEventListener('click', () => {
+          playGame('Rock');
+      });
+
+      document.querySelector('.js-paper-button').addEventListener('click', () => {
+          playGame('Paper');
+      });
+
+      document.querySelector('.js-scissor-button').addEventListener('click', () => {
+          playGame('Scissor');
+      });
+
+      document.querySelector('.js-reset-button').addEventListener('click', resetScore);
+
+    </script>
+  </body>
+</html>
