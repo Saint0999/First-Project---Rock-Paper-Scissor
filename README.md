@@ -27,10 +27,7 @@ Feedback and Contribution
 
 I would love it if you give it a try and let me know the areas I can improve!
 
-I appreciate all kinds of feedback, especially regarding:
-* JavaScript code structure and optimization.
-* CSS responsiveness or styling improvements.
-* Suggestions for adding new features (e.g., keyboard controls, difficulty levels).
+I appreciate all kinds of feedback.
 
 ---
 
